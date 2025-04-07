@@ -1,0 +1,107 @@
+.profile-header {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+
+}
+
+.cover-photo {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.profile-info {
+  position: relative;
+  margin-top: -75px;
+  padding-bottom: 20px;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border: 5px solid white;
+  object-fit: cover;
+}
+
+.card {
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+}
+
+.card-title {
+  color: #0a66c2;
+  font-weight: 600;
+}
+
+.badge {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+@media (max-width: 768px) {
+  .profile-info {
+    margin-top: -50px;
+  }
+
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+  }
+
+  .cover-photo {
+    height: 150px;
+  }
+}
+
+
+
+/* Edit Button Styles */
+.edit-cover-btn {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  border-radius: 20px;
+  padding: 5px 15px;
+}
+
+.edit-profile-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card Edit Buttons */
+.card-body > .btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+/* Experience/Education Edit Buttons */
+.btn-group {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.position-relative:hover .btn-group {
+  opacity: 1;
+}
+
+/* Skill Badges */
+.badge {
+  position: relative;
+  padding-right: 25px !important;
+}
+
+.btn-close {
+  font-size: 0.7rem;
+  padding: 0.3rem;
+}

@@ -3,12 +3,41 @@ import { RouterModule, Routes } from '@angular/router';
 import {RegiterComponent} from './regiter/regiter.component';
 import {Reg1Component} from './reg1/reg1.component';
 import {LinkedinPortfolioComponent} from './linkedin-portfolio/linkedin-portfolio.component';
+import {LoginComponent} from './login/login.component';
+import {HomeComponent} from './home/home.component';
+import {NavComponent} from './nav/nav.component';
+import {AuthGuard} from './guards/auth.guard';
+import {AuthorizationGuard} from './guards/authorization.guard';
+import {ProjetFormComponent} from './projet-form/projet-form.component';
+import {UserListComponent} from './user-list/user-list.component';
+import {TestComponent} from './test/test.component';
 
 const routes: Routes = [
 
+  { path: "", component: LoginComponent },
+  { path: "login", component: LoginComponent },
+
+
+  { path: "nav", component: NavComponent,
+    canActivate :[AuthGuard],
+    children:[
+      { path: "home", component: HomeComponent},
+      { path:"portfolio",component: LinkedinPortfolioComponent},
+
+      { path: "projetForm", component: ProjetFormComponent,
+        canActivate : [AuthorizationGuard], data : {roles : ['RESP'] }
+      },
+
+      { path: "userList", component: UserListComponent,
+        canActivate : [AuthorizationGuard], data : {roles : ['RESP'] }
+      },
+
+    ] },
+
+
   { path:"register",component: RegiterComponent},
   { path:"reg1",component: Reg1Component},
-  { path:"portfolio",component: LinkedinPortfolioComponent}
+  { path: "test", component: TestComponent },
 
 
 ];

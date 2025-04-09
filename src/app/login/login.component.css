@@ -1,0 +1,80 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+
+  background-image: url('/assets/img/pg.jpg'); /* Add your image path here */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-size: cover; /* Ensures the image covers the entire container */
+  background-position: center; /* Centers the image */
+  /*padding: 20px;*/
+
+}
+
+
+/* Overlay to improve readability */
+/*.login-container::before {*/
+/*  content: '';*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  right: 0;*/
+/*  bottom: 0;*/
+/*  background-color: rgba(0, 0, 0, 0.5); !* Semi-transparent black overlay *!*/
+/*  z-index: 1;*/
+/*}*/
+
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 12px;
+
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+  position: relative;
+  z-index: 2; /* Ensures the card is above the overlay */
+
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .login-card {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
+
+/*------------------------------------------*/
+/* Login Header */
+.login-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.login-title {
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+
+.login-subtitle {
+  font-size: 1rem;
+  font-family: 'Open Sans', sans-serif;
+  color: #666;
+}
+
+

@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User, Ville} from '../models/user.model';
 import {formatDate} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-regiter',
@@ -12,14 +13,17 @@ import {HttpClient} from '@angular/common/http';
 })
 export class RegiterComponent implements OnInit {
   registrationForm! : FormGroup;
-  submittedUser: User | null = null;
+
   currentDate = new Date(); // For displaying in template
-
-
   ville : string[]=[];
+  submittedUser: User | null = null;
+
+  public users : any;
+
 
 
   constructor(private fb: FormBuilder,
+              private activatedRoute : ActivatedRoute,
               private http: HttpClient,) {
     this.createForm();
   }
@@ -32,7 +36,15 @@ ngOnInit() {
     }
   }
 
-
+  this.http.get("http://localhost:8021/users")
+    .subscribe({
+      next : data =>{
+        this.users=data;
+      },
+      error:err => {
+        console.log(err);
+      }
+    })
 
 
 }
@@ -78,5 +90,10 @@ ngOnInit() {
     } else {
       alert('Veuillez remplir correctement tous les champs obligatoires.');
     }
+  }
+
+  saveNewUser() {
+    let formData : FormData = new FormData();
+    formData.set('data',this.registrationForm.value.data);
   }
 }

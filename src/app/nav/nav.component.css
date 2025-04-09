@@ -1,0 +1,44 @@
+.drawer-container {
+  height: 100vh; /* Full height */
+}
+
+.custom-drawer {
+  width: 200px; /* Increased drawer width */
+  padding: 10px;
+  background-color: #f5f5f5;
+
+}
+
+.drawer-top-space {
+  height: 60px; /* Empty space at the top */
+}
+
+.content-area {
+  padding: 20px;
+  height: 100vh;
+  overflow: auto;
+}
+/*-----------------------------------*/
+
+
+
+/*MenuBar Button*/
+.custom-drawer button {
+  color: #402876 !important; /* Primary color */
+}
+/*-----------------------------------*/
+
+/*Logout Button*/
+.navbar .btn-primary {
+  background-color: #402876;
+  border-color: #402876;
+}
+.navbar .btn-primary:hover {
+  background-color: #301d5a;
+  border-color: #301d5a;
+}
+/*-----------------------------------*/
+
+
+
+

@@ -78,7 +78,7 @@
             </div>
 
             <!-- Bouton de soumission -->
-            <button type="submit" class="btn btn-primary" [disabled]="!registrationForm.valid">
+            <button (click)="saveNewUser()"  type="submit" class="btn btn-primary" [disabled]="!registrationForm.valid">
               S'inscrire
             </button>
           </form>

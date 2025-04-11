@@ -1,11 +1,12 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {ProfileService} from '../services/profile.service';
+import {User} from '../models/user.model';
 
 @Component({
   selector: 'app-user-list',
@@ -13,30 +14,37 @@ import {ProfileService} from '../services/profile.service';
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css'
 })
-export class UserListComponent implements OnInit, AfterViewInit {
+export class UserListComponent implements OnInit {
   public users: any;
-  public displayedColumns = ['userId','firstName','lastName','email','phone','ville','dateInscription','role'];
-  public dataSource : any;
+  displayedColumns: string[] = ['userId', 'firstName', 'lastName', 'email', 'phone', 'ville', 'dateInscription', 'role', 'actions'];
+  public dataSource: any;
 
 
-  @ViewChild(MatPaginator) paginator! : MatPaginator;
-  @ViewChild(MatSort) sort! : MatSort;
-  constructor(private profilesService : ProfileService ) {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(private profilesService: ProfileService,
+              private router: Router) {
   }
+
   ngOnInit() {
     this.profilesService.getAllUsers()
       .subscribe({
-        next : value => {
+        next: value => {
           this.users = value;
           this.dataSource = new MatTableDataSource(this.users);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         },
-        error : err => {
+        error: err => {
           console.log(err);
         }
       })
   }
-  ngAfterViewInit() {}
+
+  info(user: User) {
+    this.router.navigateByUrl(`/test-2/${user.userId}`);
+  }
+
 }
 

@@ -1,0 +1,63 @@
+<div class="profile-container">
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Loading profile...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage" class="error-state">
+    <mat-icon>error_outline</mat-icon>
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <!-- Profile Content -->
+  <div *ngIf="userProfile && !isLoading" class="profile-card">
+    <div class="profile-header">
+      <div class="avatar-container">
+        <img [src]="userProfile.photoUrl || 'assets/default-profile.png'"
+             class="profile-avatar"
+             alt="Profile picture">
+      </div>
+      <div class="profile-title">
+        <h1>{{ userProfile.firstName }} {{ userProfile.lastName }}</h1>
+        <p class="headline">{{ userProfile.headline }}</p>
+      </div>
+    </div>
+
+    <div class="profile-details">
+      <div class="detail-section">
+        <h2><mat-icon>person_outline</mat-icon> Basic Info</h2>
+        <div class="detail-item">
+          <span class="detail-label">ID:</span>
+          <span>{{ userProfile.userId }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Email:</span>
+          <span>{{ userProfile.email }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Phone:</span>
+          <span>{{ userProfile.phone }}</span>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h2><mat-icon>location_on</mat-icon> Location</h2>
+        <div class="detail-item">
+          <span class="detail-label">City:</span>
+          <span>{{ userProfile.ville }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Address:</span>
+          <span>{{ userProfile.location }}</span>
+        </div>
+      </div>
+
+      <div class="detail-section" *ngIf="userProfile.bio">
+        <h2><mat-icon>info_outline</mat-icon> About</h2>
+        <p class="bio">{{ userProfile.bio }}</p>
+      </div>
+    </div>
+  </div>
+</div>

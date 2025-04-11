@@ -34,6 +34,14 @@ export class AuthService {
     }
   }
 
+  public getHighestRole(): string | null {
+    if (this.roles.includes("RESP")) return "RESP";
+    if (this.roles.includes("APP")) return "APP";
+    return null;
+  }
+
+
+
   logout() {
     this.isAuthenticated = false;
     this.username = undefined;

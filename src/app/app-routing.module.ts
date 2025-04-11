@@ -11,6 +11,8 @@ import {AuthorizationGuard} from './guards/authorization.guard';
 import {ProjetFormComponent} from './projet-form/projet-form.component';
 import {UserListComponent} from './user-list/user-list.component';
 import {TestComponent} from './test/test.component';
+import {HomeRespComponent} from './home-resp/home-resp.component';
+import {Test2Component} from './test-2/test-2.component';
 
 const routes: Routes = [
 
@@ -22,6 +24,8 @@ const routes: Routes = [
     canActivate :[AuthGuard],
     children:[
       { path: "home", component: HomeComponent},
+      { path: "home-resp", component: HomeRespComponent},
+
       { path:"portfolio",component: LinkedinPortfolioComponent},
 
       { path: "projetForm", component: ProjetFormComponent,
@@ -37,7 +41,10 @@ const routes: Routes = [
 
   { path:"register",component: RegiterComponent},
   { path:"reg1",component: Reg1Component},
+
+
   { path: "test", component: TestComponent },
+  { path: 'test-2/:userId', component: Test2Component }
 
 
 ];

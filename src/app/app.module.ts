@@ -36,6 +36,8 @@ import {AuthorizationGuard} from './guards/authorization.guard';
 import { ProjetFormComponent } from './projet-form/projet-form.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { TestComponent } from './test/test.component';
+import { HomeRespComponent } from './home-resp/home-resp.component';
+import { Test2Component } from './test-2/test-2.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { TestComponent } from './test/test.component';
     NavComponent,
     ProjetFormComponent,
     UserListComponent,
-    TestComponent
+    TestComponent,
+    HomeRespComponent,
+    Test2Component
   ],
   imports: [
     BrowserModule,

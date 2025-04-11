@@ -1,5 +1,5 @@
 export interface User {
-  id?: number; // Optionnel car généré automatiquement
+  userId?: number; // Optionnel car généré automatiquement
   firstName: string;
   lastName: string;
   email: string;

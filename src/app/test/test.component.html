@@ -1,3 +1,7 @@
+<div class="p-4"></div>
+<div class="p-4"></div>
+
+
 <div class="container">
   <mat-card>
     <mat-card-header>
@@ -5,9 +9,9 @@
         UserProfile
       </mat-card-title>
     </mat-card-header>
-    <mat-divider></mat-divider>
+<!--    <mat-divider></mat-divider>-->
     <mat-card-content>
-      <table>
+      <table class="styled-table">
         <thead>
         <tr>
           <th>ID</th>
@@ -21,24 +25,44 @@
           <th>bio</th>
           <th>photoUrl</th>
           <th>location</th>
+          <th>Info</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let user of usersDTO">
-          <td>{{user.userId}}</td>
-          <td>{{user.firstName}}</td>
-          <td>{{user.lastName}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.phone}}</td>
-          <td>{{user.ville}}</td>
-          <td>{{user.role}}</td>
-          <td>{{user.headline}}</td>
-          <td>{{user.bio}}</td>
-          <td>{{user.photoUrl}}</td>
-          <td>{{user.location}}</td>
-        </tr>
+
+<!--  <tr *ngFor="let user of usersDTO">  -->
+
+  @for (user of usersDTO;track usersDTO){
+
+    <tr>
+      <td>{{user.userId}}</td>
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.phone}}</td>
+      <td>{{user.ville}}</td>
+      <td>{{user.role}}</td>
+      <td>{{user.headline}}</td>
+      <td>{{user.bio}}</td>
+      <td>{{user.photoUrl}}</td>
+      <td>{{user.location}}</td>
+      <td>
+        <!-- Update Button -->
+        <button mat-icon-button color="primary" >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <!-- Delete Button -->
+        <button mat-icon-button color="warn" >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </tr>
+  }
+
         </tbody>
       </table>
     </mat-card-content>
   </mat-card>
 </div>
+
+

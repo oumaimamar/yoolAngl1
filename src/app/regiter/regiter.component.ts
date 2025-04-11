@@ -4,6 +4,8 @@ import {User, Ville} from '../models/user.model';
 import {formatDate} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
+import {ProfileService} from '../services/profile.service';
+import {RegisterService} from '../services/register.service';
 
 @Component({
   selector: 'app-regiter',
@@ -21,33 +23,20 @@ export class RegiterComponent implements OnInit {
   public users : any;
 
 
-
   constructor(private fb: FormBuilder,
               private activatedRoute : ActivatedRoute,
-              private http: HttpClient,) {
+              private registerService: RegisterService,) {
     this.createForm();
   }
 
-ngOnInit() {
-  for (let elt in Ville){
-    let value = Ville[elt];
-    if (typeof value === 'string'){
-      this.ville.push(value);
+  ngOnInit() {
+    for (let elt in Ville){
+      let value = Ville[elt];
+      if (typeof value === 'string'){
+        this.ville.push(value);
+      }
     }
   }
-
-  this.http.get("http://localhost:8021/users")
-    .subscribe({
-      next : data =>{
-        this.users=data;
-      },
-      error:err => {
-        console.log(err);
-      }
-    })
-
-
-}
 
 
   createForm() {
@@ -72,7 +61,7 @@ ngOnInit() {
     if (this.registrationForm.valid) {
       const now = new Date();
 
-      this.submittedUser = {
+      const submittedUser = {
         firstName: this.registrationForm.value.firstName,
         lastName: this.registrationForm.value.lastName,
         email: this.registrationForm.value.email,
@@ -85,8 +74,18 @@ ngOnInit() {
 
       console.log('User to be submitted:', this.submittedUser);
       // Ici, vous enverriez normalement les données à votre API
-      alert('Inscription réussie!');
-      this.registrationForm.reset();
+      this.registerService.newUser(submittedUser).subscribe({
+        next: (response) => {
+          alert('Inscription réussie!');
+          this.registrationForm.reset();
+          // Optional: redirect to login or profile page
+          // this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          console.error('Registration failed:', err);
+          alert('Erreur lors de l\'inscription. Veuillez réessayer.');
+        }
+      });
     } else {
       alert('Veuillez remplir correctement tous les champs obligatoires.');
     }

@@ -29,6 +29,10 @@
               <label for="firstName">Prénom</label>
               <input type="text" id="firstName" formControlName="firstName"
                      placeholder="Entrer votre prénom ici...">
+              <div *ngIf="inscriptionForm.get('firstName')?.invalid && inscriptionForm.get('firstName')?.touched"
+                   class="error-message">
+                Le nom est obligatoire
+              </div>
             </div>
           </div>
 
@@ -69,6 +73,10 @@
             <label for="phone">Téléphone</label>
             <input type="tel" id="phone" formControlName="phone"
                    placeholder="0650-123456">
+            <div *ngIf="inscriptionForm.get('phone')?.invalid && inscriptionForm.get('phone')?.touched"
+                 class="text-danger">
+              Le téléphone est obligatoire
+            </div>
           </div>
 
           <!-- Ville -->

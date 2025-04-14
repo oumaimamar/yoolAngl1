@@ -28,4 +28,9 @@ export class ProfileService {
     );
   }
 
+
+  deleteUser(userId: number): Observable<any> {
+    return this.http.delete(`${environment.backendHost}/userAccount/${userId}`);
+  }
+
 }

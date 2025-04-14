@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User, Ville} from '../models/user.model';
+import {ActivatedRoute} from '@angular/router';
+import {RegisterService} from '../services/register.service';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-reg1',
@@ -13,7 +16,12 @@ export class Reg1Component implements OnInit  {
   submittedUser: User | null = null;
   ville : string[]=[];
 
-  constructor(private fb: FormBuilder) {
+  currentDate = new Date(); // For displaying in template
+  public users : any;
+
+  constructor(private fb: FormBuilder,
+              private activatedRoute : ActivatedRoute,
+              private registerService: RegisterService,) {
     this.createForm();
   }
 
@@ -33,7 +41,10 @@ export class Reg1Component implements OnInit  {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      motDePasse: ['', [Validators.required, Validators.minLength(6)]], confirmPassword: ['', Validators.required],
+
+      motDePasse: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required],
+
       phone: [''],
       ville: ['', Validators.required],
     }, {validator: this.passwordMatchValidator});
@@ -45,14 +56,41 @@ export class Reg1Component implements OnInit  {
   }
 
   onSubmit() {
-
     if (this.inscriptionForm.valid) {
-      console.log('Formulaire soumis:', this.inscriptionForm.value);
-      // Ici vous enverriez les données à votre API
-      alert('Inscription réussie!');
+      const now = new Date();
+
+      const submittedUser = {
+        firstName: this.inscriptionForm.value.firstName,
+        lastName: this.inscriptionForm.value.lastName,
+        email: this.inscriptionForm.value.email,
+        phone: this.inscriptionForm.value.phone,
+        ville: this.inscriptionForm.value.ville,
+        motDePasse: this.inscriptionForm.value.motDePasse,
+        dateInscription: formatDate(now, 'yyyy-MM-dd', 'en-US') // Or other format
+        // role will be managed by the backend
+      };
+
+      console.log('User to be submitted:', this.submittedUser);
+      // Ici, vous enverriez normalement les données à votre API
+      this.registerService.newUser(submittedUser).subscribe({
+        next: (response) => {
+          alert('Inscription réussie!');
+          this.inscriptionForm.reset();
+          // Optional: redirect to login or profile page
+          // this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          console.error('Registration failed:', err);
+          alert('Erreur lors de l\'inscription. Veuillez réessayer.');
+        }
+      });
+    } else {
+      alert('Veuillez remplir correctement tous les champs obligatoires.');
     }
+  }
 
-
-
+  saveNewUser() {
+    let formData : FormData = new FormData();
+    formData.set('data',this.inscriptionForm.value.data);
   }
 }

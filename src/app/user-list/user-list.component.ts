@@ -16,35 +16,61 @@ import {User} from '../models/user.model';
 })
 export class UserListComponent implements OnInit {
   public users: any;
-  displayedColumns: string[] = ['userId', 'firstName', 'lastName', 'email', 'phone', 'ville', 'dateInscription', 'role', 'actions'];
+  displayedColumns: string[] = ['userId', 'firstName', 'lastName', 'email', 'phone', 'ville', 'dateInscription', 'role', 'actions','share'];
   public dataSource: any;
-
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private profilesService: ProfileService,
-              private router: Router) {
-  }
+  constructor(
+    private profilesService: ProfileService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.profilesService.getAllUsers()
-      .subscribe({
-        next: value => {
-          this.users = value;
-          this.dataSource = new MatTableDataSource(this.users);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-        },
-        error: err => {
-          console.log(err);
-        }
-      })
+    this.loadUsers();
   }
 
-  info(user: User) {
+  loadUsers() {
+    this.profilesService.getAllUsers().subscribe({
+      next: (value) => {
+        this.users = value;
+        this.dataSource = new MatTableDataSource(this.users);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  viewInfo(user: User) {
     this.router.navigateByUrl(`/test-2/${user.userId}`);
   }
 
+  sendWarning(user: User) {
+    console.log("Sending warning to:", user.firstName);
+    // Add your logic here
+  }
+
+  deleteUser(user: User) {
+    if (confirm(`Are you sure you want to delete ${user.firstName} ${user.lastName}?`)) {
+      if (user.userId != null) {
+        this.profilesService.deleteUser(user.userId).subscribe({
+          next: () => {
+            // Remove the deleted user from the local array
+            this.users = this.users.filter((u: User) => u.userId !== user.userId);
+            this.dataSource.data = this.users;
+            console.log('User deleted successfully');
+          },
+          error: (err) => {
+            console.error('Error deleting user:', err);
+          }
+        });
+      }
+    }
+  }
 }
+
 

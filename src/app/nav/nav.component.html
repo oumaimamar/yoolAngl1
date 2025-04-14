@@ -27,6 +27,22 @@
         </a>
       </li>
 
+
+      <li class="nav-item" >
+        <a class="nav-link d-flex align-items-center" *ngIf="authService.roles.includes('RESP')" routerLink="/nav/projetForm">
+          <mat-icon class="me-2">public</mat-icon> Reseau
+        </a>
+      </li>
+
+
+      <li class="nav-item" >
+        <a class="nav-link d-flex align-items-center" *ngIf="authService.roles.includes('RESP')" routerLink="/nav/projetForm">
+          <mat-icon class="me-2">card_travel</mat-icon> Emplois
+        </a>
+      </li>
+
+
+
       <li class="nav-item" >
         <a class="nav-link d-flex align-items-center" *ngIf="authService.roles.includes('RESP')" routerLink="/nav/projetForm">
           <mat-icon class="me-2">queue</mat-icon> NewProjet

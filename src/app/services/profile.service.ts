@@ -33,4 +33,23 @@ export class ProfileService {
     return this.http.delete(`${environment.backendHost}/userAccount/${userId}`);
   }
 
+  // Update user document  -----------------------------------------------------
+
+  uploadDocument(documentData: FormData): Observable<any> {
+    return this.http.post(`${environment.backendHost}/upload`, documentData);
+  }
+
+  // List document  -----------------------------------------------------
+
+  getAllDocuments(): Observable<Document[]> {
+    return this.http.get<Document[]>(`${environment.backendHost}/allDocs`);}
+
+
+
+  downloadDocument(id: number): Observable<Blob> {
+    return this.http.get(`${environment.backendHost}/download/${id}`, {
+      responseType: 'blob'
+    });
+  }
+
 }

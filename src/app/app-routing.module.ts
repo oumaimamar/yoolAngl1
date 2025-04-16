@@ -13,6 +13,9 @@ import {UserListComponent} from './user-list/user-list.component';
 import {TestComponent} from './test/test.component';
 import {HomeRespComponent} from './home-resp/home-resp.component';
 import {Test2Component} from './test-2/test-2.component';
+import {DocumentComponent} from './document/document.component';
+import {NewDocumentComponent} from './new-document/new-document.component';
+import {ListDocumentComponent} from './list-document/list-document.component';
 
 const routes: Routes = [
 
@@ -37,6 +40,11 @@ const routes: Routes = [
       },
 
     ] },
+
+  { path:"newDoc",component: NewDocumentComponent},
+  { path:"listDoc",component: ListDocumentComponent},
+
+  { path:"doc",component: DocumentComponent},
 
 
   { path:"register",component: RegiterComponent},

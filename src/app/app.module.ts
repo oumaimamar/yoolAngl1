@@ -38,6 +38,9 @@ import { UserListComponent } from './user-list/user-list.component';
 import { TestComponent } from './test/test.component';
 import { HomeRespComponent } from './home-resp/home-resp.component';
 import { Test2Component } from './test-2/test-2.component';
+import { DocumentComponent } from './document/document.component';
+import { ListDocumentComponent } from './list-document/list-document.component';
+import { NewDocumentComponent } from './new-document/new-document.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { Test2Component } from './test-2/test-2.component';
     UserListComponent,
     TestComponent,
     HomeRespComponent,
-    Test2Component
+    Test2Component,
+    DocumentComponent,
+    ListDocumentComponent,
+    NewDocumentComponent
   ],
   imports: [
     BrowserModule,
@@ -69,9 +75,9 @@ import { Test2Component } from './test-2/test-2.component';
     MatCardModule,
 
 
+
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule,
     MatSidenavModule,
     MatListModule,
     MatMenuModule,

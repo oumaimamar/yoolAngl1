@@ -1,0 +1,39 @@
+<div class="upload-container">
+  <h2>Document Upload</h2>
+
+  <form (ngSubmit)="onSubmit()" *ngIf="!isUploading; else uploading" class="upload-form">
+    <div class="form-group">
+      <label for="titre" class="form-label">Title:</label>
+      <input type="text" id="titre" [(ngModel)]="documentDto.titre" name="titre" required class="form-input">
+    </div>
+
+    <div class="form-group">
+      <label for="typeDoc" class="form-label">Document Type:</label>
+      <input type="text" id="typeDoc" [(ngModel)]="documentDto.typeDoc" name="typeDoc" required class="form-input">
+    </div>
+
+    <div class="form-group">
+      <label for="file" class="form-label">Document File:</label>
+      <input type="file" id="file" (change)="onFileChange($event)" required class="form-file">
+    </div>
+
+    <button type="submit" [disabled]="!documentDto.file" class="submit-button">
+      Upload Document
+    </button>
+  </form>
+
+  <ng-template #uploading>
+    <div class="upload-status">
+      <p>Upload in progress, please wait...</p>
+      <div class="spinner"></div>
+    </div>
+  </ng-template>
+
+  <!-- Message will only show if uploadMessage has content -->
+  <div *ngIf="uploadMessage && uploadMessage.length > 0"
+       [class.success]="uploadMessage.includes('success')"
+       [class.error]="uploadMessage.includes('failed')"
+       class="message-box">
+    {{ uploadMessage }}
+  </div>
+</div>

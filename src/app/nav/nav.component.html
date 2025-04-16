@@ -21,30 +21,40 @@
         </a>
       </li>
 
-      <li class="nav-item" >
+      <li class="nav-item"  *ngIf="authService.roles.includes('APP')">
         <a class="nav-link d-flex align-items-center" routerLink="/nav/portfolio">
           <mat-icon class="me-2">group</mat-icon> Portfolio
         </a>
       </li>
 
 
-      <li class="nav-item" >
-        <a class="nav-link d-flex align-items-center" *ngIf="authService.roles.includes('RESP')" routerLink="/nav/projetForm">
+      <li class="nav-item" *ngIf="authService.roles.includes('APP')"  >
+        <a class="nav-link d-flex align-items-center" routerLink="/nav/projetForm">
           <mat-icon class="me-2">public</mat-icon> Reseau
         </a>
       </li>
 
 
-      <li class="nav-item" >
-        <a class="nav-link d-flex align-items-center" *ngIf="authService.roles.includes('RESP')" routerLink="/nav/projetForm">
-          <mat-icon class="me-2">card_travel</mat-icon> Emplois
+      <li class="nav-item dropdown" *ngIf="authService.roles.includes('APP')">
+        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="offersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <mat-icon class="me-2">card_travel</mat-icon> Offers
         </a>
+        <ul class="dropdown-menu" aria-labelledby="offersDropdown">
+          <li>
+            <a class="dropdown-item" routerLink="/nav/projetForm">Entreprise</a>
+          </li>
+          <li>
+            <a class="dropdown-item" routerLink="/nav/offersList">Freelance</a>
+          </li>
+
+        </ul>
       </li>
 
 
 
-      <li class="nav-item" >
-        <a class="nav-link d-flex align-items-center" *ngIf="authService.roles.includes('RESP')" routerLink="/nav/projetForm">
+
+      <li class="nav-item" *ngIf="authService.roles.includes('RESP')" >
+        <a class="nav-link d-flex align-items-center"  routerLink="/nav/projetForm">
           <mat-icon class="me-2">queue</mat-icon> NewProjet
         </a>
       </li>
@@ -72,8 +82,8 @@
     <div class="drawer-top-space"></div> <!-- Empty space on top -->
     <mat-list>
 
-      <mat-list-item>
-        <button mat-button routerLink="/nav/portfolio">
+      <mat-list-item *ngIf="authService.roles.includes('APP')">
+        <button mat-button routerLink="/nav/portfolio" >
           <mat-icon class="me-2">account_circle</mat-icon> Profile</button>
       </mat-list-item>
 <!--      <mat-list-item>-->
@@ -85,18 +95,22 @@
 <!--          <mat-icon class="me-2">account_circle</mat-icon> Calendar</button>-->
 <!--      </mat-list-item>-->
 
-<!--      <mat-list-item >-->
-<!--        <button  mat-button routerLink="/admin/clubs">-->
-<!--          <mat-icon class="me-2">groups</mat-icon>Clubs</button>-->
-<!--      </mat-list-item>-->
-<!--      <mat-list-item>-->
-<!--        <button  mat-button routerLink="/admin/terrains">-->
-<!--          <mat-icon class="me-2">sports_soccer</mat-icon>Terrains</button>-->
-<!--      </mat-list-item>-->
+      <mat-list-item *ngIf="authService.roles.includes('APP')">
+        <button  mat-button routerLink="#" >
+          <mat-icon class="me-2">description</mat-icon>Mes Document</button>
+      </mat-list-item>
+      <mat-list-item *ngIf="authService.roles.includes('APP')">
+        <button  mat-button routerLink="#"  >
+          <mat-icon class="me-2">layers</mat-icon>Mes Certification</button>
+      </mat-list-item>
+      <mat-list-item *ngIf="authService.roles.includes('APP')">
+        <button  mat-button routerLink="#" >
+          <mat-icon class="me-2">folder</mat-icon>All Projets</button>
+      </mat-list-item>
 
-      <mat-list-item>
-        <button   mat-button routerLink="/nav/userList">
-          <mat-icon class="me-2">event</mat-icon>All Projet</button>
+      <mat-list-item *ngIf="authService.roles.includes('RESP')">
+        <button   mat-button routerLink="/nav/userList" >
+          <mat-icon class="me-2">account_circle</mat-icon>List Account</button>
       </mat-list-item>
 
     </mat-list>

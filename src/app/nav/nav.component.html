@@ -15,11 +15,13 @@
         </a>
       </li>
 
+
       <li class="nav-item" >
         <a class="nav-link active d-flex align-items-center" routerLink="/nav/home">
           <mat-icon class="me-2">home</mat-icon> Home
         </a>
       </li>
+
 
       <li class="nav-item"  *ngIf="authService.roles.includes('APP')">
         <a class="nav-link d-flex align-items-center" routerLink="/nav/portfolio">
@@ -49,7 +51,6 @@
 
         </ul>
       </li>
-
 
 
 
@@ -96,7 +97,7 @@
 <!--      </mat-list-item>-->
 
       <mat-list-item *ngIf="authService.roles.includes('APP')">
-        <button  mat-button routerLink="#" >
+        <button  mat-button routerLink="/nav/listDoc" >
           <mat-icon class="me-2">description</mat-icon>Mes Document</button>
       </mat-list-item>
       <mat-list-item *ngIf="authService.roles.includes('APP')">

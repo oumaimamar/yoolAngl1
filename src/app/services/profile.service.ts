@@ -45,7 +45,6 @@ export class ProfileService {
     return this.http.get<Document[]>(`${environment.backendHost}/allDocs`);}
 
 
-
   downloadDocument(id: number): Observable<Blob> {
     return this.http.get(`${environment.backendHost}/download/${id}`, {
       responseType: 'blob'

@@ -5,8 +5,8 @@ import {HttpClient} from '@angular/common/http';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import {ProfileService} from '../services/profile.service';
 import {User} from '../models/user.model';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -23,7 +23,7 @@ export class UserListComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    private profilesService: ProfileService,
+    private userService: UserService,
     private router: Router
   ) {}
 
@@ -32,7 +32,7 @@ export class UserListComponent implements OnInit {
   }
 
   loadUsers() {
-    this.profilesService.getAllUsers().subscribe({
+    this.userService.getAllUsers().subscribe({
       next: (value) => {
         this.users = value;
         this.dataSource = new MatTableDataSource(this.users);
@@ -57,7 +57,7 @@ export class UserListComponent implements OnInit {
   deleteUser(user: User) {
     if (confirm(`Are you sure you want to delete ${user.firstName} ${user.lastName}?`)) {
       if (user.userId != null) {
-        this.profilesService.deleteUser(user.userId).subscribe({
+        this.userService.deleteUser(user.userId).subscribe({
           next: () => {
             // Remove the deleted user from the local array
             this.users = this.users.filter((u: User) => u.userId !== user.userId);

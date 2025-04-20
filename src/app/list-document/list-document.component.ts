@@ -5,6 +5,7 @@ import {MatSort} from '@angular/material/sort';
 import {Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {User} from '../models/user.model';
+import {DocumentService} from '../services/document.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ public dataSource: any;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    private profilesService: ProfileService,
+    private documentService: DocumentService,
     private router: Router
   ) {}
 
@@ -31,7 +32,7 @@ public dataSource: any;
   }
 
   loadUsers() {
-    this.profilesService.getAllDocuments().subscribe({
+    this.documentService.getAllDocuments().subscribe({
       next: (value) => {
         this.documents = value;
         this.dataSource = new MatTableDataSource(this.documents);

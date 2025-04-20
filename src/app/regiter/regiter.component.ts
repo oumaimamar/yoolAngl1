@@ -5,7 +5,7 @@ import {formatDate} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
 import {ProfileService} from '../services/profile.service';
-import {RegisterService} from '../services/register.service';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-regiter',
@@ -25,7 +25,7 @@ export class RegiterComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private activatedRoute : ActivatedRoute,
-              private registerService: RegisterService,) {
+              private userService: UserService,) {
     this.createForm();
   }
 
@@ -74,7 +74,7 @@ export class RegiterComponent implements OnInit {
 
       console.log('User to be submitted:', this.submittedUser);
       // Ici, vous enverriez normalement les données à votre API
-      this.registerService.newUser(submittedUser).subscribe({
+      this.userService.newUser(submittedUser).subscribe({
         next: (response) => {
           alert('Inscription réussie!');
           this.registrationForm.reset();

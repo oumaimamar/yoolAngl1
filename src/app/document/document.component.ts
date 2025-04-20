@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ProfileService} from '../services/profile.service';
+import {DocumentService} from '../services/document.service';
 
 @Component({
   selector: 'app-document',
@@ -20,7 +20,7 @@ export class DocumentComponent {
   isUploading: boolean = false;
   uploadStatus!: string;
 
-  constructor(private documentService: ProfileService) { }
+  constructor(private documentService: DocumentService) { }
 
   onFileChange(event: any) {
     if (event.target.files && event.target.files.length > 0) {

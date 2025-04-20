@@ -39,7 +39,6 @@ const routes: Routes = [
         canActivate : [AuthorizationGuard], data : {roles : ['RESP'] }
       },
 
-
       { path:"newDoc",component: NewDocumentComponent},
       { path:"listDoc",component: ListDocumentComponent},
 

@@ -41,6 +41,9 @@ import { Test2Component } from './test-2/test-2.component';
 import { DocumentComponent } from './document/document.component';
 import { ListDocumentComponent } from './list-document/list-document.component';
 import { NewDocumentComponent } from './new-document/new-document.component';
+import { ExperienceFormComponent } from './experience-form/experience-form.component';
+import { ExperienceListComponent } from './experience-list/experience-list.component';
+import { ExperienceComponent } from './experience/experience.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,10 @@ import { NewDocumentComponent } from './new-document/new-document.component';
     Test2Component,
     DocumentComponent,
     ListDocumentComponent,
-    NewDocumentComponent
+    NewDocumentComponent,
+    ExperienceFormComponent,
+    ExperienceListComponent,
+    ExperienceComponent
   ],
   imports: [
     BrowserModule,

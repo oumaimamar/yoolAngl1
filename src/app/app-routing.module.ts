@@ -16,6 +16,9 @@ import {Test2Component} from './test-2/test-2.component';
 import {DocumentComponent} from './document/document.component';
 import {NewDocumentComponent} from './new-document/new-document.component';
 import {ListDocumentComponent} from './list-document/list-document.component';
+import {ExperienceFormComponent} from './experience-form/experience-form.component';
+import {ExperienceListComponent} from './experience-list/experience-list.component';
+import {ExperienceComponent} from './experience/experience.component';
 
 const routes: Routes = [
 
@@ -43,6 +46,11 @@ const routes: Routes = [
       { path:"listDoc",component: ListDocumentComponent},
 
     ] },
+
+
+  { path:"experience-form",component: ExperienceFormComponent},
+  { path:"experience-list",component: ExperienceListComponent},
+  { path:"experience",component: ExperienceComponent},
 
 
 

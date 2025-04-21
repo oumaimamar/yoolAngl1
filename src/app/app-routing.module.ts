@@ -14,11 +14,11 @@ import {TestComponent} from './test/test.component';
 import {HomeRespComponent} from './home-resp/home-resp.component';
 import {Test2Component} from './test-2/test-2.component';
 import {DocumentComponent} from './document/document.component';
-import {NewDocumentComponent} from './new-document/new-document.component';
-import {ListDocumentComponent} from './list-document/list-document.component';
 import {ExperienceFormComponent} from './experience-form/experience-form.component';
 import {ExperienceListComponent} from './experience-list/experience-list.component';
 import {ExperienceComponent} from './experience/experience.component';
+import {DocumentListComponent} from './document-list/document-list.component';
+import {DocumentFormComponent} from './document-form/document-form.component';
 
 const routes: Routes = [
 
@@ -42,8 +42,8 @@ const routes: Routes = [
         canActivate : [AuthorizationGuard], data : {roles : ['RESP'] }
       },
 
-      { path:"newDoc",component: NewDocumentComponent},
-      { path:"listDoc",component: ListDocumentComponent},
+      { path:"document-form",component: DocumentFormComponent},
+      { path:"document-list",component: DocumentListComponent},
 
     ] },
 

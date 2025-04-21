@@ -39,11 +39,11 @@ import { TestComponent } from './test/test.component';
 import { HomeRespComponent } from './home-resp/home-resp.component';
 import { Test2Component } from './test-2/test-2.component';
 import { DocumentComponent } from './document/document.component';
-import { ListDocumentComponent } from './list-document/list-document.component';
-import { NewDocumentComponent } from './new-document/new-document.component';
 import { ExperienceFormComponent } from './experience-form/experience-form.component';
 import { ExperienceListComponent } from './experience-list/experience-list.component';
 import { ExperienceComponent } from './experience/experience.component';
+import { DocumentListComponent } from './document-list/document-list.component';
+import { DocumentFormComponent } from './document-form/document-form.component';
 
 @NgModule({
   declarations: [
@@ -60,11 +60,11 @@ import { ExperienceComponent } from './experience/experience.component';
     HomeRespComponent,
     Test2Component,
     DocumentComponent,
-    ListDocumentComponent,
-    NewDocumentComponent,
     ExperienceFormComponent,
     ExperienceListComponent,
-    ExperienceComponent
+    ExperienceComponent,
+    DocumentListComponent,
+    DocumentFormComponent
   ],
   imports: [
     BrowserModule,

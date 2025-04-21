@@ -1,23 +1,21 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ProfileService} from '../services/profile.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
+import {DocumentService} from '../services/document.service';
 import {Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {User} from '../models/user.model';
-import {DocumentService} from '../services/document.service';
-
 
 @Component({
-  selector: 'app-list-document',
+  selector: 'app-document-list',
   standalone: false,
-  templateUrl: './list-document.component.html',
-  styleUrl: './list-document.component.css'
+  templateUrl: './document-list.component.html',
+  styleUrl: './document-list.component.css'
 })
-export class ListDocumentComponent implements OnInit {
-public documents: any;
-displayedColumns: string[] = ['id', 'titre', 'typeDoc', 'dateAjout', 'fileName','actions','share'];
-public dataSource: any;
+export class DocumentListComponent implements OnInit {
+  public documents: any;
+  displayedColumns: string[] = ['id', 'titre', 'typeDoc', 'dateAjout', 'fileName','actions','share'];
+  public dataSource: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -74,6 +72,6 @@ public dataSource: any;
 
 
   openAddDocumentDialog() {
-    this.router.navigateByUrl("/nav/newDoc")
+    this.router.navigateByUrl("/nav/document-form")
   }
 }

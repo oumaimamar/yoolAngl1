@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import {ProfileService} from '../services/profile.service';
 import {DocumentService} from '../services/document.service';
 
 @Component({
-  selector: 'app-new-document',
+  selector: 'app-document-form',
   standalone: false,
-  templateUrl: './new-document.component.html',
-  styleUrl: './new-document.component.css'
+  templateUrl: './document-form.component.html',
+  styleUrl: './document-form.component.css'
 })
-export class NewDocumentComponent {
+export class DocumentFormComponent {
   documentDto = {
     titre: '',
     typeDoc: '',

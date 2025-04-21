@@ -1,0 +1,100 @@
+/* Base container styles (unchanged) */
+.container {
+  max-width: 800px;
+}
+
+/* Card styling */
+.card {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-header {
+  background: linear-gradient(135deg, #2c3e50, #3498db);
+  padding: 1.5rem;
+}
+
+/* Form styling */
+form {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 0 0 8px 8px;
+}
+
+/* Input field styling */
+.form-control {
+  border: 1px solid #ced4da;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+}
+
+/* Button styling */
+.btn-primary {
+  background-color: #3498db;
+  border-color: #3498db;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+  border-color: #2980b9;
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  background-color: #bdc3c7;
+  border-color: #bdc3c7;
+}
+
+/* Alert styling */
+.alert-success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+/* Error message styling */
+.text-danger {
+  color: #e74c3c !important;
+}
+
+/* Label styling */
+.form-label {
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+/* Select dropdown arrow */
+/*.form-select {*/
+/*  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%232c3e50' d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3e%3c/svg%3e");*/
+/*}*/
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-header {
+    padding: 1rem;
+  }
+
+  form {
+    padding: 1.5rem;
+  }
+}
+
+
+
+
+/* Add to your existing CSS */
+.alert-danger {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.bi-exclamation-circle-fill {
+  color: #dc3545;
+}

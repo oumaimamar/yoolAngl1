@@ -1,1 +1,101 @@
-<p>experience-form works!</p>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h2 class="mb-0">Add New Experience</h2>
+    </div>
+
+    <div class="card-body">
+      <!-- Success alert -->
+      <!-- Alert message -->
+      <div *ngIf="showSuccess"
+           class="alert alert-dismissible fade show mt-3"
+           [class.alert-success]="!isErrorState"
+           [class.alert-danger]="isErrorState"
+           role="alert">
+        <i class="bi me-2"
+           [class.bi-check-circle-fill]="!isErrorState"
+           [class.bi-exclamation-circle-fill]="isErrorState"></i>
+        {{ successMessage }}
+        <button type="button" class="btn-close" (click)="dismissSuccess()" aria-label="Close"></button>
+      </div>
+
+      <form [formGroup]="experienceForm" (ngSubmit)="onSubmit()">
+        <div class="row g-3">
+          <!-- Position -->
+          <div class="col-md-6">
+            <label for="post" class="form-label fw-bold">Position</label>
+            <input type="text" class="form-control" id="post" formControlName="post" required>
+            <div *ngIf="experienceForm.get('post')?.invalid && experienceForm.get('post')?.touched" class="text-danger small mt-1">
+              <i class="bi bi-exclamation-circle-fill"></i> Position is required
+            </div>
+          </div>
+
+          <!-- User ID -->
+          <div class="col-md-6">
+            <label for="userId" class="form-label fw-bold">User ID</label>
+            <input type="number" class="form-control" id="userId" formControlName="userId" required>
+            <div *ngIf="experienceForm.get('userId')?.invalid && experienceForm.get('userId')?.touched" class="text-danger small mt-1">
+              <i class="bi bi-exclamation-circle-fill"></i> Valid user ID is required (numbers only)
+            </div>
+          </div>
+
+          <!-- Employment Type -->
+          <div class="col-md-6">
+            <label for="typeEmploi" class="form-label fw-bold">Employment Type</label>
+            <select class="form-select" id="typeEmploi" formControlName="typeEmploi" required>
+              <option *ngFor="let type of employmentTypes" [value]="type">{{type}}</option>
+            </select>
+          </div>
+
+          <!-- Company -->
+          <div class="col-md-6">
+            <label for="entreprise" class="form-label fw-bold">Company</label>
+            <input type="text" class="form-control" id="entreprise" formControlName="entreprise" required>
+            <div *ngIf="experienceForm.get('entreprise')?.invalid && experienceForm.get('entreprise')?.touched" class="text-danger small mt-1">
+              <i class="bi bi-exclamation-circle-fill"></i> Company is required
+            </div>
+          </div>
+
+          <!-- Dates -->
+          <div class="col-md-6">
+            <label for="dateDebut" class="form-label fw-bold">Start Date</label>
+            <input type="date" class="form-control" id="dateDebut" formControlName="dateDebut" required>
+            <div *ngIf="experienceForm.get('dateDebut')?.invalid && experienceForm.get('dateDebut')?.touched" class="text-danger small mt-1">
+              <i class="bi bi-exclamation-circle-fill"></i> Start date is required
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="dateFin" class="form-label fw-bold">End Date <span class="text-muted">(leave empty if current)</span></label>
+            <input type="date" class="form-control" id="dateFin" formControlName="dateFin">
+          </div>
+
+          <!-- City -->
+          <div class="col-md-6">
+            <label for="ville" class="form-label fw-bold">City</label>
+            <select class="form-select" id="ville" formControlName="ville" required>
+              <option *ngFor="let city of cities" [value]="city">{{city}}</option>
+            </select>
+          </div>
+
+          <!-- Description -->
+          <div class="col-12">
+            <label for="description" class="form-label fw-bold">Description</label>
+            <textarea class="form-control" id="description" formControlName="description" rows="4" required></textarea>
+            <div *ngIf="experienceForm.get('description')?.invalid && experienceForm.get('description')?.touched" class="text-danger small mt-1">
+              <i class="bi bi-exclamation-circle-fill"></i> Description is required
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="col-12 mt-4">
+            <button type="submit" class="btn btn-primary px-4 py-2" [disabled]="!experienceForm.valid">
+              <i class="bi bi-plus-circle-fill me-2"></i> Add Experience
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

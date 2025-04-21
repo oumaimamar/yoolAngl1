@@ -12,11 +12,11 @@ export interface Experience {
 
 export interface ExperienceDto {
   post: string;
-  typeEmploi: TypeEmploi;
+  typeEmploi: string;
   entreprise: string;
-  dateDebut: Date | string;
-  dateFin: Date | string | null;
-  ville: Ville;
+  dateDebut: string;
+  dateFin: string;
+  ville: string;
   description: string;
   userId: number;
 }

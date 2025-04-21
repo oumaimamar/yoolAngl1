@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {DocumentService} from '../services/document.service';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-document-form',
@@ -9,60 +11,60 @@ import {DocumentService} from '../services/document.service';
 })
 export class DocumentFormComponent {
   documentDto = {
-    titre: '',
-    typeDoc: '',
-    file: null as File | null  // Explicitly type as File or null
-  };
+  titre: '',
+  typeDoc: '',
+  userId: null,
+  filePath: null
+};
 
+  documentTypes = ['PDF', 'DOCX', 'XLSX', 'PPT', 'TXT'];
+  users = [
+    { userId: 1 },
+    { userId: 2},
+    // Add more users as needed
+  ];
 
+  uploadStatus = '';
+  isLoading = false;
 
-  uploadMessage: string = '';
-  isUploading: boolean = false;
-  uploadStatus!: string;
+  constructor(private http: HttpClient) {}
 
-  constructor(private documentService: DocumentService) { }
-
-  onFileChange(event: any) {
-    if (event.target.files && event.target.files.length > 0) {
-      this.documentDto.file = event.target.files[0];
-    } else {
-      this.documentDto.file = null;
-    }
+  onFileSelected(event: any) {
+    this.documentDto.filePath = event.target.files[0];
   }
 
-  onSubmit() {
-    if (!this.documentDto.file) {
-      this.uploadMessage = 'Please select a file';
+  uploadDocument() {
+    if (!this.documentDto.userId || !this.documentDto.filePath) {
+      this.uploadStatus = 'Please select a user and a file';
       return;
     }
+
+    this.isLoading = true;
+    this.uploadStatus = 'Uploading...';
 
     const formData = new FormData();
     formData.append('titre', this.documentDto.titre);
     formData.append('typeDoc', this.documentDto.typeDoc);
-    // Use non-null assertion (!) since we checked for null above
-    formData.append('filePath', this.documentDto.file!);
+    formData.append('userId', this.documentDto.userId);
+    formData.append('filePath', this.documentDto.filePath);
 
-    this.isUploading = true;
-    this.uploadMessage = 'Uploading...';
-
-    this.documentService.uploadDocument(formData).subscribe(
-      (response) => {
-        this.isUploading = false;
-        this.uploadMessage = 'Upload successful!';
-        console.log('Upload successful', response);
-        // Reset form after successful upload if needed
-        this.documentDto = {
-          titre: '',
-          typeDoc: '',
-          file: null
-        };
-      },
-      (error) => {
-        this.isUploading = false;
-        this.uploadMessage = 'Upload failed. Please try again.';
-        console.error('Upload failed', error);
-      }
-    );
+    this.http.post(`${environment.backendHost}/document/uploadDocument`, formData)
+      .subscribe({
+        next: (response) => {
+          this.uploadStatus = 'Upload successful!';
+          this.isLoading = false;
+          // Reset form
+          this.documentDto = {
+            titre: '',
+            typeDoc: '',
+            userId: null,
+            filePath: null
+          };
+        },
+        error: (error) => {
+          this.uploadStatus = 'Upload failed: ' + error.message;
+          this.isLoading = false;
+        }
+      });
   }
-
 }

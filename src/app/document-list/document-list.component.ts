@@ -14,7 +14,7 @@ import {User} from '../models/user.model';
 })
 export class DocumentListComponent implements OnInit {
   public documents: any;
-  displayedColumns: string[] = ['id', 'titre', 'typeDoc', 'dateAjout', 'fileName','actions','share'];
+  displayedColumns: string[] = ['id', 'titre', 'typeDoc', 'dateAjout', 'fileName','actions','userId','share'];
   public dataSource: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

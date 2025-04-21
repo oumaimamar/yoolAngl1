@@ -1,42 +1,45 @@
 <div class="p-4"></div>
 
 
+<!-- document-upload.component.html -->
 <div class="upload-container">
-  <h2>Document Upload</h2>
+  <h2>Upload Document</h2>
 
-  <form (ngSubmit)="onSubmit()" *ngIf="!isUploading; else uploading" class="upload-form">
-    <div class="form-group">
-      <label for="titre" class="form-label">Title:</label>
-      <input type="text" id="titre" [(ngModel)]="documentDto.titre" name="titre" required class="form-input">
-    </div>
+  <div class="form-group">
+    <label for="user">Select User:</label>
+    <select id="user" class="form-control" [(ngModel)]="documentDto.userId">
+      <option value="">-- Select User --</option>
+      <option *ngFor="let user of users" [value]="user.userId">
+       (ID: {{user.userId}})
+      </option>
+    </select>
+  </div>
 
-    <div class="form-group">
-      <label for="typeDoc" class="form-label">Document Type:</label>
-      <input type="text" id="typeDoc" [(ngModel)]="documentDto.typeDoc" name="typeDoc" required class="form-input">
-    </div>
+  <div class="form-group">
+    <label for="title">Document Title:</label>
+    <input type="text" id="title" class="form-control" [(ngModel)]="documentDto.titre">
+  </div>
 
-    <div class="form-group">
-      <label for="file" class="form-label">Document File:</label>
-      <input type="file" id="file" (change)="onFileChange($event)" required class="form-file">
-    </div>
+  <div class="form-group">
+    <label for="type">Document Type:</label>
+    <select id="type" class="form-control" [(ngModel)]="documentDto.typeDoc">
+      <option value="">-- Select Type --</option>
+      <option *ngFor="let type of documentTypes" [value]="type">{{type}}</option>
+    </select>
+  </div>
 
-    <button type="submit" [disabled]="!documentDto.file" class="submit-button">
-      Upload Document
-    </button>
-  </form>
+  <div class="form-group">
+    <label for="file">Select File:</label>
+    <input type="file" id="file" class="form-control" (change)="onFileSelected($event)">
+  </div>
 
-  <ng-template #uploading>
-    <div class="upload-status">
-      <p>Upload in progress, please wait...</p>
-      <div class="spinner"></div>
-    </div>
-  </ng-template>
+  <button class="btn btn-primary" (click)="uploadDocument()" [disabled]="isLoading">
+    <span *ngIf="!isLoading">Upload Document</span>
+    <span *ngIf="isLoading">Uploading...</span>
+  </button>
 
-  <!-- Message will only show if uploadMessage has content -->
-  <div *ngIf="uploadMessage && uploadMessage.length > 0"
-       [class.success]="uploadMessage.includes('success')"
-       [class.error]="uploadMessage.includes('failed')"
-       class="message-box">
-    {{ uploadMessage }}
+  <div class="status-message" [class.success]="uploadStatus.includes('successful')"
+       [class.error]="uploadStatus.includes('failed') || uploadStatus.includes('Please')">
+    {{uploadStatus}}
   </div>
 </div>

@@ -98,7 +98,7 @@ export class ExperienceFormComponent implements OnInit, OnDestroy {
 
   startRedirectTimer(): void {
     this.redirectTimer = setTimeout(() => {
-      this.router.navigateByUrl("/experience-list"); // Change this to your desired redirect path
+      this.router.navigateByUrl("/nav/experience-list"); // Change this to your desired redirect path
       this.showSuccess = false;
     }, 3000); // 3 seconds delay before redirect
   }
@@ -106,7 +106,7 @@ export class ExperienceFormComponent implements OnInit, OnDestroy {
   dismissSuccess(): void {
     this.showSuccess = false;
     clearTimeout(this.redirectTimer);
-    this.router.navigateByUrl("/experience-list"); // Optional: redirect immediately when dismissed
+    this.router.navigateByUrl("/nav/experience-list"); // Optional: redirect immediately when dismissed
   }
 
 // Don't forget to clear the timer when component is destroyed

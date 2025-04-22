@@ -6,6 +6,8 @@ import {Router} from '@angular/router';
 import {ExperienceService} from '../services/experience.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {User} from '../models/user.model';
+import {Experience} from '../models/experience.model';
+import {Document} from '../models/document.model';
 
 @Component({
   selector: 'app-experience-list',
@@ -44,36 +46,34 @@ export class ExperienceListComponent  implements OnInit {
     });
   }
 
-  viewInfo(user: User) {
+  viewInfo(experience: Experience) {
     // this.router.navigateByUrl(`/test-2/${user.userId}`);
   }
 
-  sendWarning(user: User) {
-    // console.log("Sending warning to:", user.firstName);
-    // Add your logic here
+  sendWarning(experience: Experience) {
   }
 
-  deleteUser(user: User) {
-    // if (confirm(`Are you sure you want to delete ${user.firstName} ${user.lastName}?`)) {
-    //   if (user.userId != null) {
-    //     this.profilesService.deleteUser(user.userId).subscribe({
-    //       next: () => {
-    //         // Remove the deleted user from the local array
-    //         this.users = this.users.filter((u: User) => u.userId !== user.userId);
-    //         this.dataSource.data = this.users;
-    //         console.log('User deleted successfully');
-    //       },
-    //       error: (err) => {
-    //         console.error('Error deleting user:', err);
-    //       }
-    //     });
-    //   }
-    // }
+  deleteExperience(experience: Experience) {
+    if (confirm(`Are you sure you want to delete ${experience.post} ${experience.entreprise}?`)) {
+      if (experience.id != null) {
+        this.experienceService.deleteExperience(experience.id).subscribe({
+          next: () => {
+            // Remove the deleted document from the local array
+            this.experiences = this.experiences.filter((e: Experience) => e.id !== experience.id);
+            this.dataSource.data = this.experiences;
+            console.log('User deleted successfully');
+          },
+          error: (err) => {
+            console.error('Error deleting user:', err);
+          }
+        });
+      }
+    }
   }
 
 
   openAddDocumentDialog() {
-    this.router.navigateByUrl("/experience-form")
+    this.router.navigateByUrl("/nav/experience-form")
   }
 
 

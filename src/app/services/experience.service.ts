@@ -12,23 +12,24 @@ export class ExperienceService {
   constructor(private http: HttpClient) {
   }
 
-
+  // List experience  -----------------------------------------------------
   getAllExperiences(): Observable<Experience[]> {
     return this.http.get<Experience[]>(`${environment.backendHost}/AllExperiences`);
   }
 
-
+  // List experience By userId  -----------------------------------------
   getExperiencesByUser(userId: number): Observable<Experience[]> {
-    return this.http.get<Experience[]>(`${environment.backendHost}/user/${userId}`);
+    return this.http.get<Experience[]>(`${environment.backendHost}/AllExperiencesByUserId/${userId}`);
   }
 
-
+  // Add experience  -----------------------------------------------------
   addExperience(experienceDto: ExperienceDto): Observable<Experience> {
     return this.http.post<Experience>(`${environment.backendHost}/AddNewExperience`, experienceDto);
   }
 
-  deleteExperience(id: number): Observable<string> {
-    return this.http.delete<string>(`${environment.backendHost}/deleteExperience/${id}`, { responseType: 'text' as 'json' });
+  // Delete experience  -----------------------------------------------------
+  deleteExperience(experienceId: number): Observable<string> {
+    return this.http.delete<string>(`${environment.backendHost}/DeleteExperience/${experienceId}`, { responseType: 'text' as 'json' });
   }
 
 }

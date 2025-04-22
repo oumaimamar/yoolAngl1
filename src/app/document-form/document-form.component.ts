@@ -48,7 +48,7 @@ export class DocumentFormComponent {
     formData.append('userId', this.documentDto.userId);
     formData.append('filePath', this.documentDto.filePath);
 
-    this.http.post(`${environment.backendHost}/document/uploadDocument`, formData)
+    this.http.post(`${environment.backendHost}/AddDocument`, formData)
       .subscribe({
         next: (response) => {
           this.uploadStatus = 'Upload successful!';

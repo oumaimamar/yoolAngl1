@@ -5,6 +5,7 @@ import {DocumentService} from '../services/document.service';
 import {Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {User} from '../models/user.model';
+import {Document, DocumentDto} from '../models/document.model';
 
 @Component({
   selector: 'app-document-list',
@@ -22,7 +23,7 @@ export class DocumentListComponent implements OnInit {
 
   constructor(
     private documentService: DocumentService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -43,33 +44,29 @@ export class DocumentListComponent implements OnInit {
     });
   }
 
-  viewInfo(user: User) {
-    // this.router.navigateByUrl(`/test-2/${user.userId}`);
+  viewInfo(document: DocumentDto) {
   }
 
-  sendWarning(user: User) {
-    // console.log("Sending warning to:", user.firstName);
-    // Add your logic here
+  sendWarning(document: DocumentDto) {
   }
 
-  deleteUser(user: User) {
-    // if (confirm(`Are you sure you want to delete ${user.firstName} ${user.lastName}?`)) {
-    //   if (user.userId != null) {
-    //     this.profilesService.deleteUser(user.userId).subscribe({
-    //       next: () => {
-    //         // Remove the deleted user from the local array
-    //         this.users = this.users.filter((u: User) => u.userId !== user.userId);
-    //         this.dataSource.data = this.users;
-    //         console.log('User deleted successfully');
-    //       },
-    //       error: (err) => {
-    //         console.error('Error deleting user:', err);
-    //       }
-    //     });
-    //   }
-    // }
+  deleteDocument(document: Document) {
+    if (confirm(`Are you sure you want to delete ${document.titre} ${document.dateAjout}?`)) {
+      if (document.id != null) {
+        this.documentService.deleteDocument(document.id).subscribe({
+          next: () => {
+            // Remove the deleted document from the local array
+            this.documents = this.documents.filter((d: Document) => d.id !== document.id);
+            this.dataSource.data = this.documents;
+            console.log('User deleted successfully');
+          },
+          error: (err) => {
+            console.error('Error deleting user:', err);
+          }
+        });
+      }
+    }
   }
-
 
   openAddDocumentDialog() {
     this.router.navigateByUrl("/nav/document-form")

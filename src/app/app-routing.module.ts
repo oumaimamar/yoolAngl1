@@ -45,11 +45,13 @@ const routes: Routes = [
       { path:"document-form",component: DocumentFormComponent},
       { path:"document-list",component: DocumentListComponent},
 
+      { path:"experience-form",component: ExperienceFormComponent},
+      { path:"experience-list",component: ExperienceListComponent},
+
     ] },
 
 
-  { path:"experience-form",component: ExperienceFormComponent},
-  { path:"experience-list",component: ExperienceListComponent},
+
   { path:"experience",component: ExperienceComponent},
 
 

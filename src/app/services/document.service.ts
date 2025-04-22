@@ -13,14 +13,18 @@ export class DocumentService {
 
   // Upload document  -----------------------------------------------------
   uploadDocument(documentData: FormData): Observable<any> {
-    return this.http.post(`${environment.backendHost}/document/uploadDocument`, documentData);
+    return this.http.post(`${environment.backendHost}/AddDocument`, documentData);
   }
 
 
   // List document  -----------------------------------------------------
   getAllDocuments(): Observable<Document[]> {
-    return this.http.get<Document[]>(`${environment.backendHost}/document/allDocs`);}
+    return this.http.get<Document[]>(`${environment.backendHost}/AllDocument`);}
 
+  // Delete document  -----------------------------------------------------
+  deleteDocument(documentId: number): Observable<any> {
+    return this.http.delete(`${environment.backendHost}/DeleteDocument/${documentId}`);
+  }
 
   // download document  -----------------------------------------------------
   downloadDocument(id: number): Observable<Blob> {

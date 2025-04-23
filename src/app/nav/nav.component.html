@@ -107,9 +107,20 @@
       </mat-list-item>
 
       <mat-list-item *ngIf="authService.roles.includes('APP')">
-        <button  mat-button routerLink="#"  >
+        <button  mat-button routerLink="/nav/formation-list" >
+          <mat-icon class="me-2">description</mat-icon>Mes Formations</button>
+      </mat-list-item>
+
+      <mat-list-item *ngIf="authService.roles.includes('APP')">
+        <button  mat-button routerLink="/nav/certification-list"  >
           <mat-icon class="me-2">layers</mat-icon>Mes Certification</button>
       </mat-list-item>
+
+      <mat-list-item *ngIf="authService.roles.includes('APP')">
+        <button  mat-button routerLink="/nav/skill-list"  >
+          <mat-icon class="me-2">layers</mat-icon>Mes Skills</button>
+      </mat-list-item>
+
       <mat-list-item *ngIf="authService.roles.includes('APP')">
         <button  mat-button routerLink="#" >
           <mat-icon class="me-2">folder</mat-icon>All Projets</button>

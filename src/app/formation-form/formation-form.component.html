@@ -1,0 +1,96 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h2 class="mb-0">Add New Formation</h2>
+    </div>
+
+    <div class="card-body">
+      <!-- Success alert -->
+      <!-- Alert message -->
+      <div *ngIf="showSuccess"
+           class="alert alert-dismissible fade show mt-3"
+           [class.alert-success]="!isErrorState"
+           [class.alert-danger]="isErrorState"
+           role="alert">
+        <i class="bi me-2"
+           [class.bi-check-circle-fill]="!isErrorState"
+           [class.bi-exclamation-circle-fill]="isErrorState"></i>
+        {{ successMessage }}
+        <button type="button" class="btn-close" (click)="dismissSuccess()" aria-label="Close"></button>
+      </div>
+
+      <form [formGroup]="formationForm" (ngSubmit)="onSubmit()">
+        <div class="row g-3">
+          <!-- Position -->
+          <div class="col-md-6">
+            <label for="ecole" class="form-label fw-bold">Ecole</label>
+            <input type="text" class="form-control" id="ecole" formControlName="ecole" required>
+            <div *ngIf="formationForm.get('ecole')?.invalid && formationForm.get('ecole')?.touched" class="text-danger small mt-1">
+              <i class="bi bi-exclamation-circle-fill"></i> Position is required
+            </div>
+          </div>
+
+          <!-- User ID -->
+          <div class="col-md-6">
+            <label for="userId" class="form-label fw-bold">User ID</label>
+            <input type="number" class="form-control" id="userId" formControlName="userId" required>
+            <div *ngIf="formationForm.get('userId')?.invalid && formationForm.get('userId')?.touched" class="text-danger small mt-1">
+              <i class="bi bi-exclamation-circle-fill"></i> Valid user ID is required (numbers only)
+            </div>
+          </div>
+
+
+          <!-- Company -->
+          <div class="col-md-6">
+            <label for="diplome" class="form-label fw-bold">Diplome</label>
+            <input type="text" class="form-control" id="diplome" formControlName="diplome" required>
+            <div *ngIf="formationForm.get('diplome')?.invalid && formationForm.get('diplome')?.touched" class="text-danger small mt-1">
+              <i class="bi bi-exclamation-circle-fill"></i> Diplome is required
+            </div>
+          </div>
+
+
+          <div class="col-md-6">
+            <label for="domainEtude" class="form-label fw-bold">domainEtude</label>
+            <input type="text" class="form-control" id="domainEtude" formControlName="domainEtude" required>
+            <div *ngIf="formationForm.get('domainEtude')?.invalid && formationForm.get('domainEtude')?.touched" class="text-danger small mt-1">
+              <i class="bi bi-exclamation-circle-fill"></i> domain_etude is required
+            </div>
+          </div>
+
+          <!-- Dates -->
+          <div class="col-md-6">
+            <label for="dateDebut" class="form-label fw-bold">Start Date</label>
+            <input type="date" class="form-control" id="dateDebut" formControlName="dateDebut" required>
+            <div *ngIf="formationForm.get('dateDebut')?.invalid && formationForm.get('dateDebut')?.touched" class="text-danger small mt-1">
+              <i class="bi bi-exclamation-circle-fill"></i> Start date is required
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="dateFin" class="form-label fw-bold">End Date <span class="text-muted">(leave empty if current)</span></label>
+            <input type="date" class="form-control" id="dateFin" formControlName="dateFin">
+          </div>
+
+
+          <!-- Description -->
+          <div class="col-12">
+            <label for="description" class="form-label fw-bold">Description</label>
+            <textarea class="form-control" id="description" formControlName="description" rows="4" required></textarea>
+            <div *ngIf="formationForm.get('description')?.invalid && formationForm.get('description')?.touched" class="text-danger small mt-1">
+              <i class="bi bi-exclamation-circle-fill"></i> Description is required
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="col-12 mt-4">
+            <button type="submit" class="btn btn-primary px-4 py-2" [disabled]="!formationForm.valid">
+              <i class="bi bi-plus-circle-fill me-2"></i> Add Experience
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

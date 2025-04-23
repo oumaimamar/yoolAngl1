@@ -15,7 +15,7 @@ import {Document, DocumentDto} from '../models/document.model';
 })
 export class DocumentListComponent implements OnInit {
   public documents: any;
-  displayedColumns: string[] = ['id', 'titre', 'typeDoc', 'dateAjout', 'fileName','actions','userId','share'];
+  displayedColumns: string[] = ['id', 'titre', 'typeDoc', 'dateAjout', 'fileName','userId','actions','share'];
   public dataSource: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

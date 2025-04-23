@@ -44,6 +44,12 @@ import { ExperienceListComponent } from './experience-list/experience-list.compo
 import { ExperienceComponent } from './experience/experience.component';
 import { DocumentListComponent } from './document-list/document-list.component';
 import { DocumentFormComponent } from './document-form/document-form.component';
+import { FormationListComponent } from './formation-list/formation-list.component';
+import { FormationFormComponent } from './formation-form/formation-form.component';
+import { CertificationListComponent } from './certification-list/certification-list.component';
+import { CertificationFormComponent } from './certification-form/certification-form.component';
+import { SkillFormComponent } from './skill-form/skill-form.component';
+import { SkillListComponent } from './skill-list/skill-list.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +70,13 @@ import { DocumentFormComponent } from './document-form/document-form.component';
     ExperienceListComponent,
     ExperienceComponent,
     DocumentListComponent,
-    DocumentFormComponent
+    DocumentFormComponent,
+    FormationListComponent,
+    FormationFormComponent,
+    CertificationListComponent,
+    CertificationFormComponent,
+    SkillFormComponent,
+    SkillListComponent
   ],
   imports: [
     BrowserModule,

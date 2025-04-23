@@ -40,13 +40,13 @@
 
         <ng-container matColumnDef="dateDebut">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> dateDebut </th>
-          <td mat-cell *matCellDef="let element"> {{element.dateDebut}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.dateDebut | date:'dd/MM/yyyy'}} </td>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="dateFin">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> dateFin </th>
-          <td mat-cell *matCellDef="let element"> {{element.dateFin}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.dateFin | date:'dd/MM/yyyy'}} </td>
         </ng-container>
 
         <ng-container matColumnDef="ville">

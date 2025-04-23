@@ -19,6 +19,12 @@ import {ExperienceListComponent} from './experience-list/experience-list.compone
 import {ExperienceComponent} from './experience/experience.component';
 import {DocumentListComponent} from './document-list/document-list.component';
 import {DocumentFormComponent} from './document-form/document-form.component';
+import {FormationListComponent} from './formation-list/formation-list.component';
+import {FormationFormComponent} from './formation-form/formation-form.component';
+import {CertificationFormComponent} from './certification-form/certification-form.component';
+import {CertificationListComponent} from './certification-list/certification-list.component';
+import {SkillFormComponent} from './skill-form/skill-form.component';
+import {SkillListComponent} from './skill-list/skill-list.component';
 
 const routes: Routes = [
 
@@ -47,6 +53,15 @@ const routes: Routes = [
 
       { path:"experience-form",component: ExperienceFormComponent},
       { path:"experience-list",component: ExperienceListComponent},
+
+      { path:"formation-form",component: FormationFormComponent},
+      { path:"formation-list",component: FormationListComponent},
+
+      { path:"certification-form",component: CertificationFormComponent},
+      { path:"certification-list",component: CertificationListComponent},
+
+      { path:"skill-form",component: SkillFormComponent},
+      { path:"skill-list",component: SkillListComponent},
 
     ] },
 

@@ -18,6 +18,7 @@ import {Certification} from '../models/certification.model';
   templateUrl: './linkedin-portfolio.component.html',
   styleUrl: './linkedin-portfolio.component.css'
 })
+
 export class LinkedinPortfolioComponent implements OnInit {
   public experiences: any;
   public formations: any;
@@ -27,10 +28,8 @@ export class LinkedinPortfolioComponent implements OnInit {
 
 
   public dataSource: any;
+  // public userId = 1;
 
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
 
 
   constructor(  private router: Router,
@@ -62,8 +61,6 @@ export class LinkedinPortfolioComponent implements OnInit {
       next: (value) => {
         this.experiences = value;
         this.dataSource = new MatTableDataSource(this.experiences);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
       },
       error: (err) => {
         console.log(err);
@@ -75,8 +72,6 @@ export class LinkedinPortfolioComponent implements OnInit {
       next: (value) => {
         this.formations = value;
         this.dataSource = new MatTableDataSource(this.formations);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
       },
       error: (err) => {
         console.log(err);
@@ -88,8 +83,6 @@ export class LinkedinPortfolioComponent implements OnInit {
       next: (value) => {
         this.skills = value;
         this.dataSource = new MatTableDataSource(this.skills);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
       },
       error: (err) => {
         console.log(err);
@@ -101,14 +94,14 @@ export class LinkedinPortfolioComponent implements OnInit {
       next: (value) => {
         this.certifications = value;
         this.dataSource = new MatTableDataSource(this.certifications);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
       },
       error: (err) => {
         console.log(err);
       }
     });
   }
+
+
 
 
   // Edit Methods

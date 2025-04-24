@@ -1,12 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {FormationService} from '../services/formation.service';
 import {Router} from '@angular/router';
 import {CertificationService} from '../services/certification.service';
 import {MatTableDataSource} from '@angular/material/table';
-import {Formation} from '../models/formation.model';
-import {Experience} from '../models/experience.model';
 import {Certification} from '../models/certification.model';
 
 @Component({
